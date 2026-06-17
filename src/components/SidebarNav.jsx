@@ -7,28 +7,28 @@ import {
   Video,
   ClipboardList,
   Zap,
-  ChevronRight,
   Settings,
   Bell,
-  User,
+  LogOut,
 } from 'lucide-react';
 
 const NAV_ITEMS = [
-  { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard, section: 'main' },
-  { id: 'resume',    label: 'Resume ATS',     icon: FileSearch,    section: 'main' },
-  { id: 'skillgap',  label: 'Skill Gap',      icon: BarChart3,     section: 'main' },
-  { id: 'interview', label: 'Mock Interview',  icon: Video,         section: 'main' },
-  { id: 'feedback',  label: 'AI Feedback',     icon: ClipboardList, section: 'main' },
+  { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
+  { id: 'resume', label: 'Resume ATS', icon: FileSearch },
+  { id: 'skillgap', label: 'Skill Gap', icon: BarChart3 },
+  { id: 'interview', label: 'Mock Interview', icon: Video },
+  { id: 'feedback', label: 'AI Feedback', icon: ClipboardList },
 ];
 
 const itemVariants = {
   hidden: { opacity: 0, x: -16 },
   visible: (i) => ({
-    opacity: 1,
-    x: 0,
+    opacity: 1, x: 0,
     transition: { delay: i * 0.06, duration: 0.3, ease: 'easeOut' },
   }),
 };
+
+const NOTIFICATION_COUNT = 3;
 
 export default function SidebarNav({ activeView, setActiveView }) {
   return (
@@ -69,14 +69,14 @@ export default function SidebarNav({ activeView, setActiveView }) {
             KR
           </div>
           <div className="flex-1 min-w-0">
-            <p className="text-xs font-semibold text-slate-200 truncate">Kya Shashwini</p>
+            <p className="text-xs font-semibold text-slate-200 truncate">Karan</p>
             <p className="text-[10px] text-slate-500 truncate">Staff SWE Candidate</p>
           </div>
           <div className="w-2 h-2 rounded-full bg-emerald-400 shrink-0" style={{ boxShadow: '0 0 8px rgba(52,211,153,0.6)' }} />
         </div>
       </div>
 
-      {/* Navigation */}
+      {/* Main Navigation */}
       <nav className="flex-1 p-3 pt-4 space-y-1">
         <p className="section-title px-2 mb-3">Navigation</p>
         {NAV_ITEMS.map((item, i) => {
@@ -108,15 +108,48 @@ export default function SidebarNav({ activeView, setActiveView }) {
 
       {/* Bottom actions */}
       <div className="p-3 border-t border-white/[0.05] space-y-1">
-        <button className="sidebar-nav-item w-full">
-          <Bell size={15} className="text-slate-500" />
-          <span>Notifications</span>
-          <span className="ml-auto w-5 h-5 rounded-full bg-indigo-500 text-white text-[10px] font-bold flex items-center justify-center">3</span>
-        </button>
-        <button className="sidebar-nav-item w-full">
-          <Settings size={15} className="text-slate-500" />
-          <span>Settings</span>
-        </button>
+        <motion.button
+          custom={5}
+          variants={itemVariants}
+          initial="hidden"
+          animate="visible"
+          onClick={() => setActiveView('notifications')}
+          className={`sidebar-nav-item w-full ${activeView === 'notifications' ? 'active' : ''}`}
+        >
+          <Bell size={15} className={activeView === 'notifications' ? 'text-indigo-400' : 'text-slate-500'} />
+          <span className="flex-1 text-left">Notifications</span>
+          {NOTIFICATION_COUNT > 0 && (
+            <span className="w-5 h-5 rounded-full bg-indigo-500 text-white text-[10px] font-bold flex items-center justify-center"
+              style={{ boxShadow: '0 0 8px rgba(99,102,241,0.5)' }}
+            >
+              {NOTIFICATION_COUNT}
+            </span>
+          )}
+        </motion.button>
+
+        <motion.button
+          custom={6}
+          variants={itemVariants}
+          initial="hidden"
+          animate="visible"
+          onClick={() => setActiveView('settings')}
+          className={`sidebar-nav-item w-full ${activeView === 'settings' ? 'active' : ''}`}
+        >
+          <Settings size={15} className={activeView === 'settings' ? 'text-indigo-400' : 'text-slate-500'} />
+          <span className="flex-1 text-left">Settings</span>
+        </motion.button>
+
+        <motion.button
+          custom={7}
+          variants={itemVariants}
+          initial="hidden"
+          animate="visible"
+          onClick={() => setActiveView('login')}
+          className="sidebar-nav-item w-full text-slate-500 hover:text-rose-400 hover:bg-rose-500/[0.05] group"
+        >
+          <LogOut size={15} className="group-hover:text-rose-400 transition-colors" />
+          <span className="flex-1 text-left">Sign Out</span>
+        </motion.button>
       </div>
     </motion.aside>
   );

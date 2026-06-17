@@ -21,7 +21,7 @@ const simulateLatency = async () => {
 
 const MOCK_DASHBOARD = {
   user: {
-    name: "Kya Shashwini Reddy",
+    name: "Karan Reddy",
     avatar: null,
     role: "Senior Frontend Engineer",
     targetRole: "Staff Software Engineer @ Google",
@@ -92,7 +92,7 @@ const MOCK_DASHBOARD = {
 
 const MOCK_ATS_RESULT = {
   scanId: "ats-2026-061703",
-  fileName: "KyaShashwini_Resume_v4.pdf",
+  fileName: "Karan_Reddy_Resume_v1.pdf",
   overallScore: 84,
   dimensions: [
     {
