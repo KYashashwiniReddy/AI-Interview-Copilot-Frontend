@@ -1,0 +1,223 @@
+@import "tailwindcss";
+
+@theme {
+  --color-slate-50: var(--slate-50);
+  --color-slate-100: var(--slate-100);
+  --color-slate-200: var(--slate-200);
+  --color-slate-300: var(--slate-300);
+  --color-slate-305: var(--slate-305);
+  --color-slate-350: var(--slate-350);
+  --color-slate-400: var(--slate-400);
+  --color-slate-450: var(--slate-450);
+  --color-slate-500: var(--slate-500);
+  --color-slate-550: var(--slate-550);
+  --color-slate-600: var(--slate-600);
+  --color-slate-700: var(--slate-700);
+  --color-slate-800: var(--slate-800);
+  --color-slate-805: var(--slate-805);
+  --color-slate-850: var(--slate-850);
+  --color-slate-900: var(--slate-900);
+  --color-slate-950: var(--slate-950);
+  --color-slate-955: var(--slate-955);
+  --color-slate-980: var(--slate-980);
+
+  --color-purple-405: var(--purple-405);
+  --color-purple-650: var(--purple-650);
+  --color-rose-405: var(--rose-405);
+  --color-rose-955: var(--rose-955);
+  --color-teal-955: var(--teal-955);
+  --color-emerald-450: var(--emerald-450);
+  --color-amber-450: var(--amber-450);
+
+  /* Centralized Dynamic Theme Tokens */
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-border: hsl(var(--border));
+  --color-primary: hsl(var(--primary));
+  --color-primary-hover: hsl(var(--primary-hover));
+  --color-success: hsl(var(--success));
+  --color-warning: hsl(var(--warning));
+  --color-error: hsl(var(--error));
+  --color-text-muted: hsl(var(--text-muted));
+  --color-surface: var(--slate-850);
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;       /* #FFFFFF */
+    --card: 210 29% 97%;           /* #F8FAFC */
+    --foreground: 222 47% 11%;     /* #0F172A */
+    --text-muted: 215 16% 34%;     /* #475569 */
+    --border: 214 32% 91%;         /* #E2E8F0 */
+    --primary: 258 83% 58%;        /* #7C3AED */
+    --primary-hover: 258 72% 51%;  /* #6D28D9 */
+    --success: 162 76% 41%;        /* #10B981 */
+    --warning: 38 92% 50%;         /* #F59E0B */
+    --error: 0 84% 60%;            /* #EF4444 */
+
+    --slate-50: #0F172A;
+    --slate-100: #0F172A;
+    --slate-200: #0F172A;
+    --slate-300: #475569;
+    --slate-305: #334155;
+    --slate-350: #475569;
+    --slate-400: #475569;
+    --slate-450: #64748B;
+    --slate-500: #64748B;
+    --slate-550: #94A3B8;
+    --slate-600: #94A3B8;
+    --slate-700: #CBD5E1;
+    --slate-800: #E2E8F0;
+    --slate-805: #E2E8F0;
+    --slate-850: #F1F5F9;
+    --slate-900: #F8FAFC;
+    --slate-950: #FFFFFF;
+    --slate-955: #FAFAFC;
+    --slate-980: #FFFFFF;
+
+    --purple-405: #7C3AED;
+    --purple-650: #6D28D9;
+    --rose-405: #EF4444;
+    --rose-955: #FEE2E2;
+    --teal-955: #CCFBF1;
+    --emerald-450: #10B981;
+    --amber-450: #F59E0B;
+  }
+
+  .dark {
+    --background: 222 47% 11%;     /* #0F172A */
+    --card: 217 33% 17%;           /* #1E293B */
+    --foreground: 210 29% 97%;     /* #F8FAFC */
+    --text-muted: 214 32% 91%;     /* #CBD5E1 */
+    --border: 215 19% 34%;         /* #475569 */
+    --primary: 258 90% 66%;        /* #8B5CF6 */
+    --primary-hover: 258 94% 76%;  /* #A78BFA */
+    --success: 162 76% 52%;        /* #34D399 */
+    --warning: 43 96% 56%;         /* #FBBF24 */
+    --error: 0 93% 71%;            /* #F87171 */
+
+    --slate-50: #0F172A;
+    --slate-100: #F8FAFC;
+    --slate-200: #F8FAFC;
+    --slate-300: #CBD5E1;
+    --slate-305: #E2E8F0;
+    --slate-350: #CBD5E1;
+    --slate-400: #CBD5E1;
+    --slate-450: #94A3B8;
+    --slate-500: #94A3B8;
+    --slate-550: #64748B;
+    --slate-600: #64748B;
+    --slate-700: #475569;
+    --slate-800: #1E293B;
+    --slate-805: #1E293B;
+    --slate-850: #334155;
+    --slate-900: #1E293B;
+    --slate-950: #0F172A;
+    --slate-955: #0B0F19;
+    --slate-980: #0F172A;
+
+    --purple-405: #A78BFA;
+    --purple-650: #7C3AED;
+    --rose-405: #F87171;
+    --rose-955: #451A03;
+    --teal-955: #115E59;
+    --emerald-450: #34D399;
+    --amber-450: #FBBF24;
+  }
+}
+
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-feature-settings: "rlig" 1, "calt" 1;
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1), color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  h1, h2, h3, h4, h5, h6 {
+    color: hsl(var(--foreground)) !important;
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  input, textarea, select {
+    background-color: hsl(var(--card)) !important;
+    color: hsl(var(--foreground)) !important;
+    border-color: hsl(var(--border)) !important;
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1), color 250ms cubic-bezier(0.4, 0, 0.2, 1), border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  input::placeholder, textarea::placeholder {
+    color: hsl(var(--text-muted)) !important;
+  }
+  
+  /* Prevent Light/Dark mixing on hardcoded text-white items in light mode */
+  html:not(.dark) .text-white:not(button):not(a):not(.bg-purple-600):not(.bg-primary):not(.bg-gradient-to-r) {
+    color: hsl(var(--foreground)) !important;
+  }
+}
+
+/* Glassmorphism helpers */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.dark .glass-panel {
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Animated gradient backgrounds */
+.gradient-bg {
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradientAnimation 15s ease infinite;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Mic pulse indicator animation */
+@keyframes pulse-mic {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.5);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 12px rgba(139, 92, 246, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(139, 92, 246, 0);
+  }
+}
+
+.mic-active-pulse {
+  animation: pulse-mic 1.5s infinite;
+}
+
+/* Audio wave visualization helpers */
+.wave-bar {
+  display: inline-block;
+  width: 4px;
+  height: 5px;
+  background-color: #8b5cf6;
+  margin: 0 2px;
+  border-radius: 2px;
+  transition: height 0.1s ease;
+}
