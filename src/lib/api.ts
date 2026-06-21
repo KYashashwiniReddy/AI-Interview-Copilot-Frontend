@@ -53,8 +53,22 @@ class ApiClient {
       headers
     };
 
-    const response = await fetch(url, config);
-    const data = await response.json();
+    let response: Response;
+    try {
+      response = await fetch(url, config);
+    } catch (err: any) {
+      throw new Error(`Connection failed. Please verify that the backend server is running. Details: ${err.message}`);
+    }
+
+    let data: any = null;
+    const contentType = response.headers.get('content-type');
+    if (contentType && contentType.includes('application/json')) {
+      try {
+        data = await response.json();
+      } catch (jsonErr) {
+        console.error('Error parsing JSON:', jsonErr);
+      }
+    }
 
     if (!response.ok) {
       if (response.status === 401) {
@@ -70,6 +84,10 @@ class ApiClient {
         } else if (typeof data.error === 'object') {
           errMsg = data.error.message || JSON.stringify(data.error);
         }
+      } else if (response.status === 404) {
+        errMsg = `API endpoint not found (404). Please check that NEXT_PUBLIC_API_URL is configured correctly.`;
+      } else {
+        errMsg = `Server error (${response.status}): ${response.statusText || 'Internal Server Error'}`;
       }
       // If error message is an empty object or stringified empty object, clean it to default fallback
       if (
@@ -85,7 +103,7 @@ class ApiClient {
       throw new Error(errMsg);
     }
 
-    return data;
+    return data || {};
   }
 
   // GET Request helper
