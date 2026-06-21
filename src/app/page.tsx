@@ -289,8 +289,7 @@ export default function AuthPage() {
         const { error } = await supabase.auth.signInWithOAuth({
           provider: provider.toLowerCase() as any,
           options: {
-            redirectTo: `${window.location.origin}/auth/callback`,
-            queryParams: provider === 'Google' ? { prompt: 'select_account' } : undefined
+            redirectTo: `${window.location.origin}/auth/callback`
           }
         });
         if (error) throw error;
